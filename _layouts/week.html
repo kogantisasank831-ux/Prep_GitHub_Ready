@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ page.description | default: page.title | escape }}">
+    <meta name="theme-color" content="#09111f">
+    <title>{{ page.title }} · {{ site.title }}</title>
+    <script src="{{ '/storage.js' | relative_url }}"></script>
+    <script src="{{ '/theme.js' | relative_url }}"></script>
+    <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/week.css' | relative_url }}">
+    <script src="{{ '/shell.js' | relative_url }}" defer></script>
+    <script src="{{ '/week.js' | relative_url }}" defer></script>
+    <script src="{{ '/reader.js' | relative_url }}" defer></script>
+  </head>
+  <body class="app-shell-page lesson-view" id="top">
+    <a class="skip-link" href="#lesson-content">Skip to lesson</a>
+
+    <aside class="app-sidebar" id="app-sidebar" aria-label="Learning navigation">
+      <a class="brand app-sidebar-brand" href="{{ '/' | relative_url }}" aria-label="Applied GenAI roadmap home">
+        <span class="brand-mark" aria-hidden="true">AI</span>
+        <span>Applied GenAI <strong>Roadmap</strong></span>
+      </a>
+      <nav class="app-nav" aria-label="Roadmap and lessons">
+        <p class="app-nav-label">Contents</p>
+        <a class="app-nav-link app-content-link" href="{{ '/#roadmap' | relative_url }}">
+          <span aria-hidden="true">⌂</span>
+          <span>Roadmap</span>
+        </a>
+        <p class="app-nav-label app-weeks-label">Learning path</p>
+        <div class="app-week-navigation" id="app-week-navigation" aria-live="polite"></div>
+      </nav>
+    </aside>
+    <button class="app-overlay" id="app-overlay" type="button" tabindex="-1" aria-label="Close navigation"></button>
+
+    <div class="app-page">
+      <header class="site-header lesson-header">
+        <div class="header-leading">
+          <button class="app-menu-toggle" type="button" data-app-menu-toggle aria-expanded="false" aria-controls="app-sidebar">
+            <span aria-hidden="true">☰</span>
+            <span>Menu</span>
+          </button>
+          <span class="header-context">Lesson</span>
+        </div>
+        <div class="header-actions lesson-header-actions">
+          <button class="header-control theme-toggle" type="button" aria-label="Switch color mode">
+            <span data-theme-icon aria-hidden="true">☀</span>
+            <span data-theme-label>Light</span>
+          </button>
+          <a class="back-link" href="{{ '/#roadmap' | relative_url }}">Roadmap</a>
+        </div>
+      </header>
+
+      <main class="lesson-shell">
+      <header class="lesson-hero">
+        <div class="lesson-hero-content">
+          <div class="lesson-view-controls">
+            {% if page.alternate_url %}
+            <nav class="lesson-version-switch" aria-label="Choose lesson depth">
+              <span>Choose depth</span>
+              <span class="lesson-version-current" aria-current="page">{{ page.current_label }}</span>
+              <a href="{{ page.alternate_url | relative_url }}">{{ page.alternate_label }}</a>
+            </nav>
+            {% endif %}
+            <button class="lesson-read-mode" id="read-mode-toggle" type="button" aria-pressed="false" aria-controls="lesson-sidebar">
+              <span aria-hidden="true">▤</span>
+              <span data-read-mode-label>Read mode</span>
+            </button>
+          </div>
+          <div class="lesson-kicker">
+            <span>{{ page.kicker_primary | default: "Python engineering" }}</span>
+            <span>{{ page.kicker_secondary | default: "Production foundations" }}</span>
+          </div>
+          <h1>{{ page.title }}</h1>
+          <p class="lesson-summary">{{ page.summary | default: "Production engineering foundations for reliable, typed, testable AI services." }}</p>
+        </div>
+      </header>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar" id="lesson-sidebar" aria-label="Lesson navigation">
+          <p class="lesson-toc-heading">Lesson sections</p>
+          <button class="toc-toggle" id="toc-toggle" type="button" aria-expanded="false" aria-controls="lesson-toc">
+            On this page <span aria-hidden="true">＋</span>
+          </button>
+          <nav class="lesson-toc" id="lesson-toc" aria-label="On this page"></nav>
+          <div class="lesson-progress" aria-label="Reading progress">
+            <span id="reading-progress"></span>
+          </div>
+        </aside>
+
+        <article class="lesson-content" id="lesson-content" data-week="{{ page.week }}">
+          {{ content }}
+        </article>
+      </div>
+
+      <section class="lesson-record" aria-label="Your learning record">
+        <label><input id="lesson-complete" type="checkbox"> Mark this week complete</label>
+        <label class="notes-field"><span>My notes</span><textarea id="lesson-notes" rows="4" placeholder="What clicked? What will you try next?"></textarea></label>
+      </section>
+      <nav class="lesson-pagination" aria-label="Week navigation">
+        <a href="{{ '/#roadmap' | relative_url }}">← Roadmap overview</a>
+        {% if page.previous_url %}<a href="{{ page.previous_url | relative_url }}">← Previous week</a>{% endif %}
+        {% if page.next_url %}<a href="{{ page.next_url | relative_url }}">Next week →</a>{% endif %}
+      </nav>
+      </main>
+
+      <footer>
+        <p>Applied GenAI Roadmap</p>
+        <a href="#top">Back to top ↑</a>
+      </footer>
+    </div>
+  </body>
+</html>
