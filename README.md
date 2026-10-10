@@ -8,7 +8,7 @@ learning material, not prerequisites for completing the 24-week core track.
 
 ## Push this project to GitHub
 
-Copy the contents of this project into the root of your existing **Prep** checkout.
+Copy the contents of this project into the root of your existing **Prep_GitHub_Ready** checkout.
 Include the `.github` directory. Keep your existing `.git` directory; this package
 does not replace Git history. Do not nest the project inside another `Prep` folder.
 Review the changes, then run from your existing checkout:
@@ -27,7 +27,7 @@ curriculum** manually from the Actions tab. If your default branch is different,
 update both `main` references and the deploy condition in `.github/workflows/pages.yml`.
 
 Expected URL for this repository:
-<https://kogantisasank831-ux.github.io/Prep/>
+<https://kogantisasank831-ux.github.io/Prep_GitHub_Ready/>
 
 The site uses a Python build and static Pages deployment. Ruby/Jekyll is not
 required for this workflow. Select GitHub Actions, not the previous branch-based
@@ -41,12 +41,12 @@ Install Python 3.12 or later. From the project root:
 ```powershell
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-site.txt
-.\.venv\Scripts\python.exe scripts/build_site.py --output .preview/Prep
-.\.venv\Scripts\python.exe scripts/check_built_site.py --directory .preview/Prep
+.\.venv\Scripts\python.exe scripts/build_site.py --output .preview/Prep_GitHub_Ready --baseurl /Prep_GitHub_Ready
+.\.venv\Scripts\python.exe scripts/check_built_site.py --directory .preview/Prep_GitHub_Ready
 .\.venv\Scripts\python.exe -m http.server 8000 --directory .preview
 ```
 
-Open <http://localhost:8000/Prep/>. On macOS/Linux use `python3 -m venv .venv`
+Open <http://localhost:8000/Prep_GitHub_Ready/>. On macOS/Linux use `python3 -m venv .venv`
 and `.venv/bin/python` in place of the Windows Python path. Serving the source
 folder directly shows the dashboard but does not build lesson pages.
 
@@ -62,14 +62,14 @@ controls. Edit Markdown and rebuild; do not manually edit generated HTML.
 
 ```sh
 python -m pip install -r requirements-site.txt
-python scripts/build_site.py --output _site
+python scripts/build_site.py --output _site --baseurl /Prep_GitHub_Ready
 python scripts/check_built_site.py --directory _site
 ```
 
 The build validates the 30 main lessons and seven alternatives. Link checks cover
 all generated pages, local assets and anchors. The GitHub Actions workflow runs
 the same commands before deployment. The output includes a no-JavaScript lesson
-index at `/Prep/all-weeks/`.
+index at `/Prep_GitHub_Ready/all-weeks/`.
 
 Optional browser verification:
 
